@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'olistconnect',
 ]
 
 MIDDLEWARE_CLASSES = [
