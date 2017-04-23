@@ -1,6 +1,12 @@
 from django.conf.urls import url
-from django.contrib import admin
+from olistconnect.views import *
+# Uncomment this line to enable admin
+# from django.contrib import admin
+
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+	# Uncomment this line to enable admin
+    # url(r'^admin/', admin.site.urls),
+    url(r'^$', index),
+
 ]

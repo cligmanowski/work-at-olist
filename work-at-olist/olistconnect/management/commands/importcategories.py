@@ -29,8 +29,11 @@ class Command(BaseCommand):
 			read = csv.DictReader(csvFile)
 
 			for row in read:
+				categoryPath = row['Category'];
+				if (categoryPath!=""):
+					for categories in categoryPath.split("/"):
+						print(categories)
 
-				print(row['Category'])
 
 	
 
