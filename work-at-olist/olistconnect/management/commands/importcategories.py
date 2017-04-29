@@ -1,17 +1,16 @@
+# -*- coding: utf-8 -*-
 import sys
 import csv
 
 from django.core.management.base import BaseCommand, CommandError
+from django.db.utils import IntegrityError
 from olistconnect.models import *
-
-# todo :
-#	process the Category names  
-# 	get the Category Name and pass to a Model or Database
 
 class Command(BaseCommand):
     help = ' Import categories from specified CSV file '
-    classDict = {}
+    
     channelObj = None
+    
 
     def add_arguments(self, parser):
     	parser.add_argument('channelName', type=str, help='The channel\'s name that will be stored')
@@ -23,13 +22,14 @@ class Command(BaseCommand):
     	
 
     	try:
-    		channelObj = Channel()
-    		channelObj.name = channel
-    		channelObj.save()
+    		self.channelObj = Channel()
+    		self.channelObj.name = channel
+    		self.channelObj.save()
     		self.readFile(csvFileName)
 
-        except:
+        except CommandError,IntegrityError:
         	raise CommandError('File "%s" does not exist' % csvFileName)
+        	raise IntegrityError('Already has a channel named "%s"' % channel)
 
         self.stdout.write(self.style.SUCCESS('CSV file "%s" Successfully read' % csvFileName))
 
@@ -48,38 +48,41 @@ class Command(BaseCommand):
 		pathLen = len(categories)
 		ancestor = None
 		descendant = None
-		categoryTreePath = CategoryPath()
+		categoryObjList = []
+		categoryObj = None
+		categoryTreeObj = None
 		if (pathLen==1):
 			category = categories[0].strip()
-			# categoryObj = Category(category)
-			# self.classDict[category] = categoryObj
-			# descendant = categoryObj
+			categoryObj = Category()
+			categoryTreeObj = CategoryPath()
+			categoryObj.name = category
+			categoryObj.categoryChannel = self.channelObj
+			categoryObj.save()
+			categoryTreeObj.setDescendant(categoryObj)
+			categoryTreeObj.setAncestor(ancestor)
+			categoryTreeObj.save()
 		else:
-			category = categories[pathLen-1].strip()
-			# categoryObj = Category(category)
-			# self.classDict[category]=categoryObj
-			# descendant = categoryObj 
-			ancestor = self.classDict[categories[pathLen-2].strip()]
+			for count in range(0,pathLen-1):
+				category = categories[count].strip()
+				# print('Buscando "%s" no banco de dados' % category)
+				categoryObj = Category.objects.get(name=category)
+				# if categoryObj:
+				# 	print('Categoria "%s" encontrada com sucesso' % categoryObj.name)
+				categoryObjList.append(categoryObj)
+			categoryObj = Category()
+			categoryObj.name = categories[pathLen-1].strip()
+			categoryObj.categoryChannel = self.channelObj
+			categoryObj.save()
+			categoryObjList.append(categoryObj)
+			descendant = categoryObj
+			objLen = len(categoryObjList)
+			for ancestor in categoryObjList:
+				print ancestor.name
+				categoryTreeObj = CategoryPath()
+				categoryTreeObj.setAncestor(ancestor)
+				categoryTreeObj.setDescendant(descendant)
+				categoryTreeObj.save()
 
-		categoryObj = Category()
-		categoryObj.name = category
-		categoryObj.categoryChannel = self.channelObj
-		self.classDict[category]=categoryObj
-		descendant = categoryObj 
-		categoryTreePath.setAncestor(ancestor)
-		categoryTreePath.setDescendant(descendant)
-		categoryObj.save()
-		# categoryTreePath.save()
-
-		print self.classDict
 			
+
 		
-
-
-	# if __name__ == "__main__":
-	# 	argumentsNumber = len(sys.argv)
-	# 	if (argumentsNumber == 2):
-	# 		param = sys.argv[1]
-	# 		readFile( param )
-	# 	else: 
-	# 		print("You need to provide a csv file as argument!")

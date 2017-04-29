@@ -6,7 +6,7 @@ from django.db import models
 # Create your models here.
 class Channel(models.Model):
 
-	name = models.CharField(max_length=20)
+	name = models.CharField(max_length=20,unique=True)
 
 
 class Category(models.Model):
@@ -31,11 +31,12 @@ class CategoryPath(models.Model):
 	descendant = models.ForeignKey(
 		Category,
 		on_delete = models.CASCADE,
+		null=True,
 		related_name="descendant",
 	)
 
 	def setAncestor(self,Category=None):
-		ancestor=Category
+		self.ancestor=Category
 
 	def setDescendant(self,Category):
-		descendant=Category
+		self.descendant=Category
