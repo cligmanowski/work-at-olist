@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if channels %}
+	{% for channel in channels %}
+		<div class="channelName"><p><a href="channels/{{channel.name}}">{{channel.name}}</a></p></div>
+	{% endfor %}
+{% else %}
+	<div class="channelName"><p>There is no channels yet!</p></div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1> {{ channel.name }} Categories </h1>
+
+{% if categories %}
+	{% for category in categories %}
+		<div class="categoryName"><p><a href="{{channel.name}}/{{category.name}}">{{category.name}}</a></p></div>
+	{% endfor %}
+{% else %}
+	<div class="categoryName"><p>There is no categories yet!</p></div>
+{% endif %}
+
+{% endblock %}

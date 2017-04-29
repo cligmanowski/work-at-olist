@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1><p>{{category.name}}</p></h1>
+<h2><p>Channel - {{channel}}</p></h2>
+{% if parentCategories %}
+	<p>Parent Categories</p>
+	<ul>
+	{% for parent in parentCategories %}
+		<li><div class="className">{{parent.name}}</div></li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<div class="className"><p>This is a Root Category</p></div>
+{% endif %}
+
+{% if subcategories %}
+	<p>Subcategories</p>
+	<ul>
+	{% for subcategory in subcategories %}
+		<li><div>{{subcategory.name}}</div></li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>This is a Leaf Category</p>
+{% endif %}
+{% endblock %}
