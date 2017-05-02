@@ -10,5 +10,5 @@ urlpatterns = [
     url(r'^$', index),
     url(r'^channels$', listChannels, name='channels'),
     url(r'^channels/(?P<channel_name>\w+)$', listCategories, name='list_categories'),
-    url(r'^channels/(?P<channel_name>\w+)/(?P<category_detail>\w+)$', showCategory, name='category_detail')
+    url(r'^channels/(?P<channel_name>\w+)/(?P<category_detail>[\w-]+)$', showCategory, name='category_detail')
 ]

@@ -2,27 +2,35 @@
 
 
 {% block content %}
-<h1><p>{{category.name}}</p></h1>
-<h2><p>Channel - {{channel}}</p></h2>
-{% if parentCategories %}
-	<p>Parent Categories</p>
-	<ul>
-	{% for parent in parentCategories %}
-		<li><div class="className">{{parent.name}}</div></li>
-	{% endfor %}
-	</ul>
-{% else %}
-	<div class="className"><p>This is a Root Category</p></div>
-{% endif %}
+<div class="container">
+		<div class="jumbotron">
+			<h2>{{category.name}}</h2>
+			<p class="lead">Channel - {{channel}}</p>
+			<hr class="m-y-md">
+			<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+			<div>
+				{% if parentCategories %}
+					<p>Parent Categories</p>
+					<ul>
+					{% for parent in parentCategories %}
+						<li><div class="className">{{parent.name}}</div></li>
+					{% endfor %}
+					</ul>
+				{% else %}
+					<div class="className"><p><strong>This is a Root Category</strong></p></div>
+				{% endif %}
 
-{% if subcategories %}
-	<p>Subcategories</p>
-	<ul>
-	{% for subcategory in subcategories %}
-		<li><div>{{subcategory.name}}</div></li>
-	{% endfor %}
-	</ul>
-{% else %}
-	<p>This is a Leaf Category</p>
-{% endif %}
+				{% if subcategories %}
+					<p>Subcategories</p>
+					<ul>
+					{% for subcategory in subcategories %}
+						<li><div>{{subcategory.name}}</div></li>
+					{% endfor %}
+					</ul>
+				{% else %}
+					<p><strong>This is a Leaf Category</strong></p>
+				{% endif %}
+			</div>
+		</div>
+
 {% endblock %}

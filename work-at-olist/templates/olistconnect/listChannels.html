@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-
+<div class="container">
 {% if channels %}
 	{% for channel in channels %}
 		<div class="channelName"><p><a href="channels/{{channel.name}}">{{channel.name}}</a></p></div>
@@ -8,4 +8,5 @@
 {% else %}
 	<div class="channelName"><p>There is no channels yet!</p></div>
 {% endif %}
+</div>
 {% endblock %}

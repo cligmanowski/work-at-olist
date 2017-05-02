@@ -3,5 +3,37 @@
 {% block title %}
 	Olist Categories Listing
 {% endblock %}
+{% block nav %}
+<div class="container">
+		<div class="jumbotron">
+			<h1 class="display-1">Work at olist Assigment Apply</h1>
+			<p class="lead">This is an examble of Olist Application</p>
+			<hr class="m-y-md">
+			
+		</div>
+<nav class="navbar navbar-light bg-faded">
+<!-- <a class="navbar-brand" href="#">{4:Navbar}</a> -->
+<ul class="nav navbar-nav">
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'channels' %}">List Channels <span class="sr-only">(current)</span></a>
+    </li>
+   
+</ul>
+<!-- <form class="form-inline navbar-form pull-right">
+    <input class="form-control" type="text" placeholder="Search">
+    <button class="btn btn-success-outline" type="submit">Search</button>
+</form> -->
+</nav>
+</div>
+{% endblock %}
 {% block content %}
 {% endblock %}
+{% block footer %}
+    <!-- Begin page content -->
+	<footer class="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </footer>
+{% endblock %}
+

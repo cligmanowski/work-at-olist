@@ -35,7 +35,7 @@ def listCategories(request, channel_name):
 
 def showCategory(request, channel_name, category_detail):
 
-	category = Category.objects.get(name=category_detail)
+	category = Category.objects.get(slug=category_detail)
 	channel = channel_name
 	idparentCategories = CategoryPath.objects.filter(descendant=category)
 	parentCategories = []
