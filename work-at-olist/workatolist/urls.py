@@ -16,7 +16,7 @@ urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     # url(r'^$', index),
     url(r'^$', ListChannels.as_view(), name='channellist'),
-    url(r'^docs/', include_docs_urls(title='OList Assingment')),
+    url(r'^docs/', include_docs_urls(title='OList Assignment')),
     url(r'^channels/(?P<channel_name>\w+)$', ListCategories.as_view(),name='listcategories'),
     url(r'^channels/(?P<channel_name>\w+)/(?P<category_slug>[\w-]+)$', ListParentSubCategories.as_view(),name='categorydetail'),
    
