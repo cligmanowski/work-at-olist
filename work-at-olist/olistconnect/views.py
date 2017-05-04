@@ -131,7 +131,7 @@ class ListParentSubCategories(APIView):
         Return a Parents list of a Category
         """
 		ancestors = []
-		idAncestors = CategoryPath.objects.filter(descendant=Category)
+		idAncestors = CategoryPath.objects.filter(descendant=Category).exclude(ancestor=Category)
 		for path in idAncestors:
 			ancestors.append(path.ancestor)
 
@@ -142,7 +142,7 @@ class ListParentSubCategories(APIView):
         Return a Subcategory list of a Category
         """
 		descendants = []
-		idDescendants = CategoryPath.objects.filter(ancestor=Category)
+		idDescendants = CategoryPath.objects.filter(ancestor=Category).exclude(descendant=Category)
 		for path in idDescendants:
 			descendants.append(path.descendant)
 

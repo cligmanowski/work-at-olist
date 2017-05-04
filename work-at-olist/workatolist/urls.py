@@ -14,13 +14,13 @@ from rest_framework.documentation import include_docs_urls
 urlpatterns = [
 	# Uncomment this line to enable admin
     # url(r'^admin/', admin.site.urls),
-    url(r'^$', ListChannels.as_view()),
+    url(r'^channels$', ListChannels.as_view()),
     # url(r'^docs/', include_docs_urls(title='My API title')),
     url(r'^channels/(?P<channel_name>\w+)$', ListCategories.as_view(),name='listcategories'),
     url(r'^channels/(?P<channel_name>\w+)/(?P<category_slug>[\w-]+)$', ListParentSubCategories.as_view(),name='categorydetail'),
    
-    # url(r'^$', views.ChannelView, name="channel_list"),
-    # url(r'^channels$', listChannels, name='channels'),
-    # url(r'^channels/(?P<channel_name>\w+)$', listCategories, name='list_categories'),
-    # url(r'^channels/(?P<channel_name>\w+)/(?P<category_detail>[\w-]+)$', showCategory, name='category_detail')
+    # url(r'^$', index),
+    # url(r'^channelsHtml$', listChannels, name='channels'),
+    # url(r'^channelsHtml/(?P<channel_name>\w+)$', listCategories, name='list_categories'),
+    # url(r'^channelsHtml/(?P<channel_name>\w+)/(?P<category_detail>[\w-]+)$', showCategory, name='category_detail')
 ]
