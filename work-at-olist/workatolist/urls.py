@@ -2,7 +2,9 @@ from django.conf.urls import url, include
 from olistconnect.views import *
 # Uncomment this line to enable admin
 # from django.contrib import admin
-from rest_framework import routers
+
+from rest_framework.documentation import include_docs_urls
+
 
 #router = routers.DefaultRouter()
 
@@ -13,8 +15,10 @@ urlpatterns = [
 	# Uncomment this line to enable admin
     # url(r'^admin/', admin.site.urls),
     url(r'^$', ListChannels.as_view()),
-    url(r'^channels/(?P<channel_name>\w+)$', ListCategories.as_view()),
-    url(r'^channels/(?P<channel_name>\w+)/(?P<category_slug>[\w-]+)$', ListParentSubCategories.as_view())
+    # url(r'^docs/', include_docs_urls(title='My API title')),
+    url(r'^channels/(?P<channel_name>\w+)$', ListCategories.as_view(),name='listcategories'),
+    url(r'^channels/(?P<channel_name>\w+)/(?P<category_slug>[\w-]+)$', ListParentSubCategories.as_view(),name='categorydetail'),
+   
     # url(r'^$', views.ChannelView, name="channel_list"),
     # url(r'^channels$', listChannels, name='channels'),
     # url(r'^channels/(?P<channel_name>\w+)$', listCategories, name='list_categories'),

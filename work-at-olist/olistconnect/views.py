@@ -72,7 +72,8 @@ class ListChannels(APIView):
 
     def get(self, request, format=None):
         """
-        Return a list of all users.
+        get:
+        Return a list of all channels.
         """
         channels = Channel.objects.all()
         channelSerialized = channelSerializer(channels,many=True)
@@ -86,6 +87,7 @@ class ListCategories(APIView):
 
     def get(self, request, channel_name, format=None):
         """
+        get:
         Return a list of the Channel Categories.
         """
         channel = get_object_or_404(Channel, name=channel_name)
