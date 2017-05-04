@@ -3,12 +3,15 @@
 <div class="container">
 <h1> {{ channel.name }} Categories </h1>
 
+<ul class="nav navbar-nav">
+				<li><a href="{% url 'channels' %}">List Channels</a></li>
+			</ul>
 {% if categories %}
 	{% for category in categories %}
-		<div class="categoryName"><p><a href="{{channel.name}}/{{category.slug}}">{{category.name}}</a></p></div>
+		<div><p><a href="{{channel.name}}/{{category.slug}}">{{category.name}}</a></p></div>
 	{% endfor %}
 {% else %}
-	<div class="categoryName"><p>There is no categories yet!</p></div>
+	<div class="alert alert-warning"><p>There is no categories yet!</p></div>
 {% endif %}
 </div>
 {% endblock %}

@@ -4,10 +4,9 @@
 {% block content %}
 <div class="container">
 		<div class="jumbotron">
-			<h2>{{category.name}}</h2>
-			<p class="lead">Channel - {{channel}}</p>
+			<h2 class="text-center">Category - {{category.name}}</h2>
+			<p class="lead text-center">Channel - <a href="{% url 'index' %}">{{channel}}</a></p>
 			<hr class="m-y-md">
-			<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
 			<div>
 				{% if parentCategories %}
 					<p>Parent Categories</p>
@@ -17,7 +16,7 @@
 					{% endfor %}
 					</ul>
 				{% else %}
-					<div class="className"><p><strong>This is a Root Category</strong></p></div>
+					<div class="alert alert-warning">This is a Root Category</div>
 				{% endif %}
 
 				{% if subcategories %}
@@ -28,9 +27,11 @@
 					{% endfor %}
 					</ul>
 				{% else %}
-					<p><strong>This is a Leaf Category</strong></p>
+					<div class="alert alert-warning">This is a Leaf Category<div>
 				{% endif %}
 			</div>
+
+
 		</div>
 
 {% endblock %}
