@@ -1,1 +1,1 @@
-web: gunicorn workatolist.wsgi —log-file -
+web: cd work-at-olist && gunicorn workatolist.wsgi
