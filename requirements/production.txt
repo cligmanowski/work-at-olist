@@ -4,3 +4,4 @@ prettyconf
 dj-database-url
 djangorestframework
 whitenoise
+coreapi
