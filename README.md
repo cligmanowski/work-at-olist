@@ -13,8 +13,8 @@ This is an implementation of the [Work at Olist Assignment](https://github.com/o
 
 # 1. Work Environment
 
-**OS** - MACOS 
-**IDE** - Sublime3 
+**OS** - MACOS<br /> 
+**IDE** - Sublime3<br /> 
 **Run on** - Terminal BASH
 
 Libraries:
@@ -46,7 +46,8 @@ Using the GET METHOD, Its possible to get database elements in JSON Representati
   - /channels/<channel_name> : return a list of <channel_name> Categories
   - /channels/<channel_name>/<category_name>: return a list of Parent Directories and Subdirectories of the specified <category_name>
   - /docs: Built-in Django Rest Framework Documentation. **Important**: **<category_name>** has to be in slug form as in Django slugify function. It replaces white spaces with "-". Example: Science Fiction turns on science-fiction. 
-  Example:
+  
+  Example: /channels/walmart/books/
 ``` 
 HTTP 200 OK
 Allow: GET, HEAD, OPTIONS
